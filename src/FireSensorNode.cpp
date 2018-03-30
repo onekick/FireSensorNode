@@ -23,6 +23,7 @@ bool FireSensorNode::addSensor(Sensor * sensor, void(callback*)(void), unsigned 
 {
 	Serial.println("FireSensorNode::startSense called\n");
 	sensorThread	= new Thread();
+	sensorThread.onRun(callback);
 	
 	controller.add(sensorManager);
 	controller.add(actuatorManager);
