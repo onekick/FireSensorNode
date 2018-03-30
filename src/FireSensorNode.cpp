@@ -19,31 +19,16 @@ FireSensorNode::~FireSensorNode() {
 	delete dataManager;	
 }
 
-bool FireSensorNode::addSensor(Sensor * sensor, void(callback*)(void), unsigned long)
-{
-	Serial.println("FireSensorNode::startSense called\n");
-	sensorThread	= new Thread();
-	sensorThread.onRun(callback);
-	
-	controller.add(sensorManager);
-	controller.add(actuatorManager);
-	controller.add(commManager);
-}
-
-bool FireSensorNode::removeSensor(Sensor * sensor)
-{
-	sensorManager->stopSense(sensor);
-	sensorManager->removeSensor(sensor);
-}
-
-bool FireSensorNode::startSense()
+bool FireSensorNode::startSense(SensorManager* sensorManager)
 {
 	flagRun = true;
+	controller.add(sensorManager);
 }
 
 bool FireSensorNode::stopSense()
 {	
 	flagRun = false;
+	controller.remove(sensorManager);
 }
 
 bool FireSensorNode::isRunning()

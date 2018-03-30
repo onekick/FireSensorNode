@@ -8,8 +8,9 @@
 #include "Manager.h"
 
 void callBack(void)
-Manager::Manager() {
-
+Manager::Manager(void(callback*)(void), unsigned long ms) {
+	onRun(callback);
+	setInterval(ms);
 }
 
 Manager::~Manager() {

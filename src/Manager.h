@@ -15,7 +15,7 @@ class Manager : public Thread{
 public:
 
 public:
-	Manager();
+	Manager(void(*callback)(void), unsigned long ms);
 	virtual ~Manager();
 };
 

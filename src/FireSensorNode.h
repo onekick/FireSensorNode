@@ -25,23 +25,17 @@ private:
 	StopWatch * stopWatch;
 	DataManager* dataManager;
 
-//	SensorManager* sensorManager;
-//	ActuatorManager* actuatorManager;
-//	CommManager* commManager;
+	SensorManager* sensorManager = NULL;
+	ActuatorManager* actuatorManager = NULL;
+	CommManager* commManager = NULL;
 	
 	ThreadController controller = ThreadController();
-	
-	void tickGenerator();
-	void timerCallback();
 	
 public:
 	FireSensorNode();
 	virtual ~FireSensorNode();
 
-	bool addSensor(Sensor * sensor, void(callback*)(void), unsigned long);
-	bool removeSensor(Sensor * sensor);
-
-	bool startSense();
+	bool startSense(SensorManager* sensorManager);
 	bool stopSense();
 
 	bool setMute(bool isMute);
